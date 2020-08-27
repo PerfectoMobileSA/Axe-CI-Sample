@@ -1,0 +1,64 @@
+group 'org.test'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://repo1.perfectomobile.com/public/repositories/maven'
+    }
+}
+
+dependencies {
+
+    compile 'org.testng:testng:6.10'
+	compile 'com.perfecto.reporting-sdk:reportium-testng:2.3'
+    compile 'com.perfecto.reporting-sdk:reportium-import-java:2.3'
+    compile 'com.perfectomobile:pm-webdriver:18.1.0.0'
+    compile 'com.perfectomobile:intellij-connector:18.1.0.0'
+
+ 	compile ('com.perfecto.reporting-sdk:reportium-java:1.1.23') {
+        exclude group: "org.seleniumhq.selenium", module: "selenium-remote-driver"
+        exclude group: "org.seleniumhq.selenium", module: "selenium-java"
+        exclude group: "org.seleniumhq.selenium", module: "selenium-api"
+    }
+
+    compile 'commons-codec:commons-codec:1.10'
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'dom4j:dom4j:1.6.1'
+    compile 'com.google.code.gson:gson:2.5'
+    compile 'com.google.guava:guava:19.0'
+    compile 'org.apache.httpcomponents:httpclient:4.5.1'
+    compile 'org.apache.httpcomponents:httpcore:4.4.4'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.0'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.7.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
+    compile 'io.appium:java-client:3.4.1'
+    compile 'jaxen:jaxen:1.1.6'
+    compile 'org.slf4j:jcl-over-slf4j:1.7.16'
+    compile 'org.json:json:20151123'
+    compile 'ch.qos.logback:logback-classic:1.1.8'
+    compile 'ch.qos.logback:logback-core:1.1.8'
+    compile 'org.seleniumhq.selenium:selenium-api:2.53.0'
+    compile 'org.seleniumhq.selenium:selenium-remote-driver:2.53.0'
+    compile 'org.seleniumhq.selenium:selenium-support:2.53.0'
+    compile 'org.slf4j:slf4j-api:1.7.16'
+
+}
+
+test {
+	systemProperties['cloudName']=project.hasProperty('cloudName') ? cloudName : null
+	systemProperties['securityToken']=project.hasProperty('securityToken') ? securityToken : null
+	systemProperties['jobName']=project.hasProperty('jobName') ? jobName : "NA"
+	systemProperties['jobNumber']=project.hasProperty('jobNumber') ? jobNumber : null
+	print(systemProperties['jobName'])
+	useTestNG() {
+		useDefaultListeners = true
+		suiteXmlFiles << new File("src/test/testng.xml")
+		setSuiteXmlFiles (suiteXmlFiles)
+	}
+}

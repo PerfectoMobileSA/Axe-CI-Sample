@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ADA Suite" parallel="tests" preserve-order="false"
+	thread-count="10">
+	<test name="Windows Web ADA test with AXE" enabled="true">
+		<parameter name="url"
+			value="https://www.fast.com/"></parameter>
+		<parameter name="platform" value="Windows"></parameter>
+		<classes>
+			<class name="WebADA_Axe" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Android Web ADA test with AXE" enabled="true">
+		<parameter name="url"
+			value="https://www.fast.com/"></parameter>
+		<parameter name="platform" value="Android"></parameter>
+		<classes>
+			<class name="WebADA_Axe" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Mac Web ADA test with AXE" enabled="true">
+		<parameter name="url"
+			value="https://www.fast.com/"></parameter>
+		<parameter name="platform" value="Mac"></parameter>
+		<classes>
+			<class name="WebADA_Axe" />
+		</classes>
+	</test> <!-- Test -->
+
+</suite> <!-- Suite -->
+
